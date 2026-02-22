@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverWave.Api", "src\EverWave.Api\EverWave.Api.csproj", "{330E8E24-286A-42D7-95B1-F1ED723772EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverWave.Domain", "src\EverWave.Domain\EverWave.Domain.csproj", "{BE6A2748-8286-4EAE-BDE4-424C59DABDFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverWave.Data", "src\EverWave.Data\EverWave.Data.csproj", "{CF3B7629-0C28-4F71-9DA2-EDE4F452BAEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverWave.Repository", "src\EverWave.Repository\EverWave.Repository.csproj", "{3F4340F7-70E3-4550-BA94-6AB4BE102650}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverWave.Services", "src\EverWave.Services\EverWave.Services.csproj", "{9C62D6BE-269B-4CE1-8E9D-05E11E1EA93A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{330E8E24-286A-42D7-95B1-F1ED723772EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330E8E24-286A-42D7-95B1-F1ED723772EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330E8E24-286A-42D7-95B1-F1ED723772EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330E8E24-286A-42D7-95B1-F1ED723772EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE6A2748-8286-4EAE-BDE4-424C59DABDFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE6A2748-8286-4EAE-BDE4-424C59DABDFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE6A2748-8286-4EAE-BDE4-424C59DABDFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE6A2748-8286-4EAE-BDE4-424C59DABDFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF3B7629-0C28-4F71-9DA2-EDE4F452BAEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF3B7629-0C28-4F71-9DA2-EDE4F452BAEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF3B7629-0C28-4F71-9DA2-EDE4F452BAEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF3B7629-0C28-4F71-9DA2-EDE4F452BAEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F4340F7-70E3-4550-BA94-6AB4BE102650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F4340F7-70E3-4550-BA94-6AB4BE102650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F4340F7-70E3-4550-BA94-6AB4BE102650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F4340F7-70E3-4550-BA94-6AB4BE102650}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C62D6BE-269B-4CE1-8E9D-05E11E1EA93A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C62D6BE-269B-4CE1-8E9D-05E11E1EA93A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C62D6BE-269B-4CE1-8E9D-05E11E1EA93A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C62D6BE-269B-4CE1-8E9D-05E11E1EA93A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
