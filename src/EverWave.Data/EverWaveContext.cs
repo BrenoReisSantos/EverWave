@@ -1,4 +1,5 @@
-﻿using EverWave.Domain.Entities;
+﻿using EverWave.Data.Config;
+using EverWave.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EverWave.Data;
@@ -10,6 +11,12 @@ public class EverWaveContext : DbContext
     public DbSet<Unidade> Unidades { get; init; }
     public DbSet<Ministerio> Ministerios { get; init; }
     public DbSet<Cargo> Cargos { get; init; }
+    public DbSet<MinisterioLocal> MinisteriosLocais { get; init; }
+    public DbSet<ParticipacaoMinisterioLocal> ParticipacoesMinisteriosLocais { get; init; }
+
+    public EverWaveContext(DbContextOptions<EverWaveContext> options) : base(options)
+    {
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -18,6 +25,7 @@ public class EverWaveContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(MembroEntityConfiguration).Assembly);
         base.OnModelCreating(modelBuilder);
     }
 }

@@ -9,5 +9,5 @@ public class MinisterioLocal : BaseEndableEntity
     public Guid UnidadeId { get; set; }
     public Unidade? Unidade { get; set; }
 
-    public List<MinisterioLocalParticipacao> ParticipacoesMinisterios { get; set; }
+    public List<ParticipacaoMinisterioLocal> ParticipacoesMinisterios { get; set; }
 }

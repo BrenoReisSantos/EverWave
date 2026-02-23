@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EverWave.Data.Config;
 
-public class MinisterioLocalParticipacaoEntityConfiguration : IEntityTypeConfiguration<MinisterioLocalParticipacao>
+public class MinisterioLocalParticipacaoEntityConfiguration : IEntityTypeConfiguration<ParticipacaoMinisterioLocal>
 {
-    public void Configure(EntityTypeBuilder<MinisterioLocalParticipacao> builder)
+    public void Configure(EntityTypeBuilder<ParticipacaoMinisterioLocal> builder)
     {
         builder.HasKey(x => x.Id);
         builder.HasAlternateKey(x => new { x.MinisterioLocalId, x.MembroId, x.CargoId });

@@ -1,6 +1,6 @@
 ﻿namespace EverWave.Domain.Entities;
 
-public class MinisterioLocalParticipacao : BaseEndableEntity
+public class ParticipacaoMinisterioLocal : BaseEndableEntity
 {
     public Guid Id { get; init; }
 
