@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\EverWave.Data\EverWave.Data.csproj" />
+      <ProjectReference Include="..\EverWave.Domain\EverWave.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
