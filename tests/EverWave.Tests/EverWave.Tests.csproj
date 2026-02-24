@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="coverlet.collector" Version="6.0.4"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+        <PackageReference Include="NSubstitute" Version="5.3.0" />
+        <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.17">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Shouldly" Version="4.3.0" />
+        <PackageReference Include="xunit" Version="2.9.3"/>
+        <PackageReference Include="xunit.analyzers" Version="1.27.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Using Include="Xunit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\EverWave.Api\EverWave.Api.csproj" />
+      <ProjectReference Include="..\..\src\EverWave.Data\EverWave.Data.csproj" />
+      <ProjectReference Include="..\..\src\EverWave.Domain\EverWave.Domain.csproj" />
+      <ProjectReference Include="..\..\src\EverWave.Repository\EverWave.Repository.csproj" />
+      <ProjectReference Include="..\..\src\EverWave.Services\EverWave.Services.csproj" />
+      <ProjectReference Include="..\EverWave.Tests.Common\EverWave.Tests.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="DatabaseUtils\" />
+    </ItemGroup>
+
+</Project>
