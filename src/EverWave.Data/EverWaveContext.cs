@@ -1,5 +1,6 @@
 ﻿using EverWave.Data.Config;
 using EverWave.Domain.Entities;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace EverWave.Data;
@@ -14,7 +15,7 @@ public class EverWaveContext : DbContext
     public DbSet<MinisterioLocal> MinisteriosLocais { get; init; }
     public DbSet<ParticipacaoMinisterioLocal> ParticipacoesMinisteriosLocais { get; init; }
 
-    public EverWaveContext(DbContextOptions<EverWaveContext> options) : base(options)
+    public EverWaveContext(DbContextOptions options) : base(options)
     {
     }
 

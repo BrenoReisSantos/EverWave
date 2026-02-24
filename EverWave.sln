@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverWave.Repository", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverWave.Services", "src\EverWave.Services\EverWave.Services.csproj", "{9C62D6BE-269B-4CE1-8E9D-05E11E1EA93A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverWave.Tests", "tests\EverWave.Tests\EverWave.Tests.csproj", "{0833B749-4FB6-4C8D-A17E-0F72C6274731}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverWave.Tests.Common", "tests\EverWave.Tests.Common\EverWave.Tests.Common.csproj", "{8FEA45E8-A655-4177-9A28-7525AD8E0397}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +46,13 @@ Global
 		{9C62D6BE-269B-4CE1-8E9D-05E11E1EA93A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C62D6BE-269B-4CE1-8E9D-05E11E1EA93A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C62D6BE-269B-4CE1-8E9D-05E11E1EA93A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0833B749-4FB6-4C8D-A17E-0F72C6274731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0833B749-4FB6-4C8D-A17E-0F72C6274731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0833B749-4FB6-4C8D-A17E-0F72C6274731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0833B749-4FB6-4C8D-A17E-0F72C6274731}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FEA45E8-A655-4177-9A28-7525AD8E0397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FEA45E8-A655-4177-9A28-7525AD8E0397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FEA45E8-A655-4177-9A28-7525AD8E0397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FEA45E8-A655-4177-9A28-7525AD8E0397}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
