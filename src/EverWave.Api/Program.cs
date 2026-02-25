@@ -1,5 +1,10 @@
 using EverWave.Data;
+using EverWave.Repository.Extensions;
+using EverWave.Services.Extensions;
+
 using Microsoft.EntityFrameworkCore;
+
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,12 +19,17 @@ builder.Services.AddDbContext<EverWaveContext>(options =>
     options.UseNpgsql(connectionString, config => config.MigrationsAssembly("EverWave.Data"));
 });
 
+builder.Services.AddCommonServices();
+builder.Services.AddApiServices();
+builder.Services.AddRepositories();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();

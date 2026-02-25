@@ -1,6 +1,6 @@
 @EverWave.Api_HostAddress = http://localhost:5128
 
-GET {{EverWave.Api_HostAddress}}/weatherforecast/
+POST {{EverWave.Api_HostAddress}}/api/Unidade/
 Accept: application/json
 
 ###

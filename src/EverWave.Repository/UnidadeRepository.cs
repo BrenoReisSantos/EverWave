@@ -2,6 +2,8 @@
 using EverWave.Domain.Entities;
 using EverWave.Domain.Repository;
 
+using Microsoft.EntityFrameworkCore;
+
 namespace EverWave.Repository;
 
 public class UnidadeRepository(EverWaveContext context) : IUnidadeRepository
@@ -14,4 +16,8 @@ public class UnidadeRepository(EverWaveContext context) : IUnidadeRepository
         await _context.SaveChangesAsync(cancellationToken);
         return unidade;
     }
+    
+    public async Task<Unidade?> Obtem(Guid id) => await _context.Unidades.FindAsync(id);
+    
+    public async Task<IEnumerable<Unidade>> ObtemTodos() => await _context.Unidades.ToListAsync();
 }

@@ -37,8 +37,4 @@
       <ProjectReference Include="..\EverWave.Tests.Common\EverWave.Tests.Common.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="DatabaseUtils\" />
-    </ItemGroup>
-
 </Project>

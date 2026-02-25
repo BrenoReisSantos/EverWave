@@ -1,5 +1,4 @@
 ﻿using Bogus;
-using Bogus.Extensions;
 
 using EverWave.Domain.Entities;
 
@@ -18,6 +17,12 @@ public sealed class UnidadeBuilder : Faker<Unidade>
     public UnidadeBuilder ComoNovaEntidade()
     {
         RuleFor(x => x.Id, Guid.Empty);
+        return this;
+    }
+
+    public UnidadeBuilder ComCreatedAt(DateTime createdAt)
+    {
+        RuleFor(x => x.CreatedAt, createdAt);
         return this;
     }
 }
