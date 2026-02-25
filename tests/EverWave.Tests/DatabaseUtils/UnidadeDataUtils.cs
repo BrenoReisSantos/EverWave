@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EverWave.Tests.DatabaseUtils;
 
-public class UnidadeTableUtils(EverWaveContext context)
+public class UnidadeDataUtils(EverWaveContext context)
 {
     private readonly EverWaveContext _context = context;
 
@@ -21,10 +21,15 @@ public class UnidadeTableUtils(EverWaveContext context)
         return await _context.Unidades.AsNoTracking().ToListAsync();
     }
 
-    public async Task<Unidade?> Insert(Unidade unidade)
+    public async Task Insert(Unidade unidade)
     {
-        await _context.Unidades.AddAsync(unidade);
+        _context.Unidades.Add(unidade);
         await _context.SaveChangesAsync();
-        return unidade;
+    }
+
+    public async Task Insert(IEnumerable<Unidade> unidades)
+    {
+        _context.Unidades.AddRange(unidades);
+        await _context.SaveChangesAsync();
     }
 }
