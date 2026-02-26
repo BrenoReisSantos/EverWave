@@ -25,4 +25,22 @@ public sealed class UnidadeBuilder : Faker<Unidade>
         RuleFor(x => x.CreatedAt, createdAt);
         return this;
     }
+
+    public UnidadeBuilder ComId(Guid id)
+    {
+        RuleFor(x => x.Id, id);
+        return this;
+    }
+
+    public UnidadeBuilder ComNome(string nome)
+    {
+        RuleFor(x => x.Nome, nome);
+        return this;
+    }
+    
+    public UnidadeBuilder ComUpdatedAt(DateTime updatedAt)
+    {
+        RuleFor(x => x.UpdatedAt, updatedAt);
+        return this;
+    }
 }

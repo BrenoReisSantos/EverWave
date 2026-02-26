@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EverWave.Tests.Common;
 
-public class DatabaseFixture : IDisposable
+public class BasicDatabaseFixture : BaseUnitTest
 {
     public EverWaveContext Context { get; }
 
-    public DatabaseFixture()
+    public BasicDatabaseFixture()
     {
         Context = CreateContext();
-        MigrateDatabase();
+        CreateDatabase();
     }
 
     EverWaveContext CreateContext()
@@ -20,8 +20,10 @@ public class DatabaseFixture : IDisposable
             .UseNpgsql("Server=localhost;Port=5432;Database=EverWaveTest;User Id=postgres;Password=postgres;").Options);
     }
 
-    public void MigrateDatabase()
+    public void CreateDatabase()
     {
+        Context.ChangeTracker.Clear();
+        Context.Database.EnsureDeleted();
         Context.Database.Migrate();
     }
 

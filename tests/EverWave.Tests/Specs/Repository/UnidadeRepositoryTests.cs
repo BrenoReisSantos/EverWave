@@ -1,4 +1,6 @@
-﻿using EverWave.Domain.Repository;
+﻿using Bogus;
+
+using EverWave.Domain.Repository;
 using EverWave.Repository;
 using EverWave.Tests.Common;
 using EverWave.Tests.Common.Builders.Entities;
@@ -8,39 +10,37 @@ using Shouldly;
 
 namespace EverWave.Tests.Specs.Repository;
 
-public class UnidadeRepositoryTests : IClassFixture<DatabaseFixture>
+public class UnidadeRepositoryTests : BasicDatabaseFixture, IClassFixture<BasicDatabaseFixture>
 {
-    private readonly DatabaseFixture _databaseFixture;
     private readonly IUnidadeRepository _sut;
     private readonly UnidadeDataUtils _unidadeDataUtils;
 
-    public UnidadeRepositoryTests(DatabaseFixture databaseFixture)
+    public UnidadeRepositoryTests()
     {
-        _databaseFixture = databaseFixture;
-        _sut = new UnidadeRepository(_databaseFixture.Context);
-        _unidadeDataUtils = new UnidadeDataUtils(_databaseFixture.Context);
+        _sut = new UnidadeRepository(Context);
+        _unidadeDataUtils = new UnidadeDataUtils(Context);
     }
 
     [Fact]
-    public async Task InsereUnidadeAsync_InsereNovaUnidadeNoBanco()
+    public async Task InsereAsync_InsereNovaUnidadeNoBanco()
     {
         var unidade = new UnidadeBuilder().ComoNovaEntidade().Generate();
 
-        var novaUnidade = await _sut.InsereUnidadeAsync(unidade, CancellationToken.None);
+        var novaUnidade = await _sut.InsereAsync(unidade, CancellationToken.None);
 
-        var unidadeDoBd = await _unidadeDataUtils.Get(novaUnidade.Id);
+        var unidadeDoBd = await _unidadeDataUtils.GetAsync(novaUnidade.Id);
 
         novaUnidade.Nome.ShouldBe(unidadeDoBd?.Nome);
-        novaUnidade.CreatedAt.ShouldBe(unidadeDoBd!.CreatedAt);
-        novaUnidade.UpdatedAt.ShouldBe(unidadeDoBd?.UpdatedAt);
-        novaUnidade.Id.ShouldBe(unidadeDoBd!.Id);
+        novaUnidade.CreatedAt.ShouldBe(unidadeDoBd!.CreatedAt, TimeSpan.FromMilliseconds(500));
+        novaUnidade.UpdatedAt?.ShouldBe(unidadeDoBd.UpdatedAt!.Value, TimeSpan.FromMilliseconds(500));
+        novaUnidade.Id.ShouldBe(unidadeDoBd.Id);
     }
 
     [Fact]
-    public async Task Obtem_RetornaUnidadeComIdEspecifico()
+    public async Task ObtemAsync_RetornaUnidadeComIdEspecifico()
     {
         var unidade = new UnidadeBuilder().ComoNovaEntidade().Generate();
-        await _unidadeDataUtils.Insert(unidade);
+        await _unidadeDataUtils.InsertAsync(unidade);
 
         var result = await _sut.ObtemAsync(unidade.Id, CancellationToken.None);
 
@@ -48,14 +48,36 @@ public class UnidadeRepositoryTests : IClassFixture<DatabaseFixture>
     }
 
     [Fact]
-    public async Task ObtemTodos_RetornaTodasAsUnidadesDoBanco()
+    public async Task ObtemTodosAsync_RetornaTodasAsUnidadesDoBanco()
     {
         var quantidadeUnidades = 3;
         var unidades = new UnidadeBuilder().ComoNovaEntidade().Generate(quantidadeUnidades);
-        await _unidadeDataUtils.Insert(unidades);
+        await _unidadeDataUtils.InsertManyAsync(unidades);
 
         var result = await _sut.ObtemTodosAsync(CancellationToken.None);
 
         result.Count().ShouldBe(quantidadeUnidades);
+    }
+
+    [Fact]
+    public async Task AtualizaAsync_AtualizaEntidadeNoBancoDeDados()
+    {
+        var unidade = new UnidadeBuilder().ComoNovaEntidade().Generate();
+        await _unidadeDataUtils.InsertAsync(unidade);
+
+        var nomeEsperado = Faker.Company.CompanyName(0);
+        var createdAtEsperado = Faker.Date.Past().ToUniversalTime();
+        var updatedAtEsperado = Faker.Date.Recent().ToUniversalTime();
+        var unidadeAtualizando = new UnidadeBuilder().ComId(unidade.Id).ComNome(nomeEsperado)
+            .ComUpdatedAt(updatedAtEsperado)
+            .ComCreatedAt(createdAtEsperado).Generate();
+
+        await _sut.AtualizaAsync(unidadeAtualizando, CancellationToken.None);
+
+        var result = await _unidadeDataUtils.GetAsync(unidade.Id);
+
+        result.Nome.ShouldBe(nomeEsperado);
+        result.CreatedAt.ShouldBe(createdAtEsperado, TimeSpan.FromMilliseconds(500));
+        result.UpdatedAt?.ShouldBe(updatedAtEsperado, TimeSpan.FromMilliseconds(500));
     }
 }

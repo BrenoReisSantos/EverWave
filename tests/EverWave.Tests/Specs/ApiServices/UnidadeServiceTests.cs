@@ -35,7 +35,7 @@ public class UnidadeServiceTests : BaseUnitTest
         await _sut.CriaUnidadeAsync(unidadeFake, CancellationToken.None);
 
         await _unidadeRepositoryMock.Received()
-            .InsereUnidadeAsync(Arg.Is<Unidade>(u => u.Nome == nomeEsperado && u.CreatedAt == fakeNow),
+            .InsereAsync(Arg.Is<Unidade>(u => u.Nome == nomeEsperado && u.CreatedAt == fakeNow),
                 Arg.Any<CancellationToken>());
     }
 }

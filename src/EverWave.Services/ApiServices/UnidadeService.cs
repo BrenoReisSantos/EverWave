@@ -19,7 +19,7 @@ public class UnidadeService(IUnidadeRepository repository, ITimeProvider timePro
             CreatedAt = _timeProvider.UtcNow
         };
 
-        var unidadeCriada = await _repository.InsereUnidadeAsync(novaUnidade, cancellationToken);
+        var unidadeCriada = await _repository.InsereAsync(novaUnidade, cancellationToken);
 
         return null;
     }
