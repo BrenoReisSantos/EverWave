@@ -1,8 +1,9 @@
 ﻿using EverWave.Domain.Dtos.HttpIn;
+using EverWave.Domain.Entities;
 
 namespace EverWave.Domain.Services.ApiServices;
 
 public interface IUnidadeService
 {
-    Task<object> CriaUnidadeAsync(UnidadeCriacaoDto unidadeDto, CancellationToken cancellationToken);
+    Task<Unidade> CriaUnidadeAsync(UnidadeCriacaoDto unidadeDto, CancellationToken cancellationToken);
 }

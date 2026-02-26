@@ -11,7 +11,7 @@ public class UnidadeService(IUnidadeRepository repository, ITimeProvider timePro
     private readonly IUnidadeRepository _repository = repository;
     private readonly ITimeProvider _timeProvider = timeProvider;
 
-    public async Task<object> CriaUnidadeAsync(UnidadeCriacaoDto unidadeDto, CancellationToken cancellationToken)
+    public async Task<Unidade> CriaUnidadeAsync(UnidadeCriacaoDto unidadeDto, CancellationToken cancellationToken)
     {
         var novaUnidade = new Unidade
         {
