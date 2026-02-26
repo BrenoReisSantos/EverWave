@@ -1,6 +1,5 @@
 ﻿using EverWave.Domain.Common;
-using EverWave.Domain.Services.ApiServices;
-using EverWave.Services.ApiServices;
+using EverWave.Domain.Services;
 
 using Microsoft.Extensions.DependencyInjection;
 

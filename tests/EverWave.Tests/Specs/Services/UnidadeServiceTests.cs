@@ -1,15 +1,14 @@
 ﻿using EverWave.Domain.Common;
 using EverWave.Domain.Entities;
 using EverWave.Domain.Repository;
-using EverWave.Domain.Services.ApiServices;
-using EverWave.Services.ApiServices;
+using EverWave.Domain.Services;
+using EverWave.Services;
 using EverWave.Tests.Common;
 using EverWave.Tests.Common.Builders.Dtos.HttpIn;
-using EverWave.Tests.Common.Builders.Entities;
 
 using NSubstitute;
 
-namespace EverWave.Tests.Specs.ApiServices;
+namespace EverWave.Tests.Specs.Services;
 
 public class UnidadeServiceTests : BaseUnitTest
 {
