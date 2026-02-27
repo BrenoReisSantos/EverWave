@@ -5,5 +5,5 @@ namespace EverWave.Domain.Services;
 
 public interface IUnidadeService
 {
-    Task<Unidade?> CriaUnidadeAsync(UnidadeCriacaoDto unidadeDto, CancellationToken cancellationToken);
+    Task<Unidade?> CriaAsync(UnidadeCriacaoDto unidadeDto, CancellationToken cancellationToken);
 }

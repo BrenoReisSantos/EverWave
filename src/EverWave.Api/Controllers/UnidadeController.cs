@@ -14,7 +14,7 @@ public class UnidadeController(IUnidadeService unidadeService) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CriaNovaUnidade(UnidadeCriacaoDto unidade, CancellationToken cancellationToken)
     {
-        var unidadeCriada = await _unidadeService.CriaUnidadeAsync(unidade, cancellationToken);
+        var unidadeCriada = await _unidadeService.CriaAsync(unidade, cancellationToken);
         return Ok(unidadeCriada);
     }
 }
