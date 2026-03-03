@@ -11,4 +11,14 @@
       <PackageReference Include="MudBlazor" Version="9.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\EverWave.Domain\EverWave.Domain.csproj" />
+      <ProjectReference Include="..\EverWave.Repository\EverWave.Repository.csproj" />
+      <ProjectReference Include="..\EverWave.Services\EverWave.Services.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\lib\" />
+    </ItemGroup>
+
 </Project>

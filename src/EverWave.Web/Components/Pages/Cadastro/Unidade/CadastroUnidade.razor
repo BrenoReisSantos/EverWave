@@ -1,0 +1,48 @@
+﻿@page "/unidades/cadastro"
+@rendermode InteractiveServer
+
+@using EverWave.Web.Data
+@using EverWave.Web.Values.Forms
+
+@inject IUnidadeData UnidadeData
+@inject NavigationManager Navigation
+@inject ISnackbar Snackbar
+
+
+<MudContainer Class="mt-5">
+    <MudText Class="mt-5" Typo="Typo.h4">CADASTRO DE UNIDADE</MudText>
+    <MudForm Class="mt-5">
+        <MudGrid Justify="Justify.FlexStart" Spacing="0">
+            <MudItem xs="12" lg="4">
+                <MudTextField @bind-Value="_form.Nome" Required Placeholder="Nome"
+                              @RequiredError="É necessário dar nome à Unidade"
+                              @Label="Nome da Unidade"/>
+
+            </MudItem>
+            <MudFlexBreak/>
+            <MudItem xs="3">
+                <MudButton Disabled="_processando" Class="mt-5" Variant="Variant.Filled" Color="Color.Primary"
+                           @onclick="OnSubmit">Criar
+                </MudButton>
+            </MudItem>
+        </MudGrid>
+    </MudForm>
+</MudContainer>
+
+@code {
+    CadastroUnidadeForm _form = new();
+
+    bool _processando = false;
+
+    private async Task OnSubmit()
+    {
+        _processando = true;
+        await UnidadeData.CriaUnidadeAsync(_form);
+        _processando = false;
+
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.BottomRight;
+        Snackbar.Add("Unidade Cadastrada com Sucesso!", Severity.Success);
+        Navigation.NavigateTo("/unidades");
+    }
+
+}

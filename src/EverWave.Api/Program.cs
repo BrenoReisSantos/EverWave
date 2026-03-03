@@ -20,7 +20,7 @@ builder.Services.AddDbContext<EverWaveContext>(options =>
 });
 
 builder.Services.AddCommonServices();
-builder.Services.AddApiServices();
+builder.Services.AddServices();
 builder.Services.AddRepositories();
 
 var app = builder.Build();

@@ -1,0 +1,52 @@
+﻿@page "/unidades"
+@rendermode InteractiveServer
+
+@using EverWave.Web.Data
+@using EverWave.Web.Values.Table
+
+@inject IUnidadeData UnidadeData
+@inject NavigationManager Navigation
+
+<MudContainer Class="mt-5">
+
+    <MudText Typo="Typo.h4">UNIDADES</MudText>
+
+    <MudGrid Spacing="0" Justify="Justify.FlexEnd">
+        <MudItem xs="0">
+            <MudLink Href="/unidades/cadastro">
+                <MudIconButton Icon="@Icons.Material.Filled.Add" Class="rounded-circle" Color="Color.Primary"
+                               Variant="Variant.Filled"/>
+            </MudLink>
+        </MudItem>
+    </MudGrid>
+
+    <MudTable Class="mt-5" T="UnidadeVisualizacaoTable" Items="_listaUnidades" Loading="_tabelaUnidadesCarregando">
+        <HeaderContent>
+            <MudTh>Nome</MudTh>
+            <MudTh>Fundação</MudTh>
+            <MudTh>Última Alteração</MudTh>
+            <MudTh>Ativo</MudTh>
+        </HeaderContent>
+
+        <RowTemplate>
+            <MudTd>@context.Nome</MudTd>
+            <MudTd>@context.Fundacao</MudTd>
+            <MudTd>@context.UltimaAlteracao</MudTd>
+            <MudTd>@context.Ativo</MudTd>
+        </RowTemplate>
+    </MudTable>
+
+</MudContainer>
+
+@code {
+    List<UnidadeVisualizacaoTable> _listaUnidades = [];
+    bool _tabelaUnidadesCarregando = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _tabelaUnidadesCarregando = true;
+        _listaUnidades.AddRange(await UnidadeData.ListaUnidadesAsync());
+        _tabelaUnidadesCarregando = false;
+    }
+
+}

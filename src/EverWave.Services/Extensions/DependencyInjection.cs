@@ -9,7 +9,7 @@ namespace EverWave.Services.Extensions;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApiServices(this IServiceCollection services)
+    public static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddTransient<IUnidadeService, UnidadeService>();
         return services;
