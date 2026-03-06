@@ -13,6 +13,8 @@ public class UnidadeService(IUnidadeRepository repository, ITimeProvider timePro
 
     public async Task<Unidade?> CriaAsync(UnidadeCriacaoDto unidadeDto, CancellationToken cancellationToken)
     {
+        if (unidadeDto.Nome is null) throw new Exception("Nome da unidade não pode ser nulo");
+
         var novaUnidade = new Unidade { Nome = unidadeDto.Nome, CreatedAt = _timeProvider.UtcNow };
 
         return await _repository.InsereAsync(novaUnidade, cancellationToken);

@@ -1,11 +1,12 @@
 ﻿@page "/unidades"
+@attribute [StreamRendering]
 @rendermode InteractiveServer
 
 @using EverWave.Web.Data
 @using EverWave.Web.Values.Table
 
 @inject IUnidadeData UnidadeData
-@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
 
 <MudContainer Class="mt-5">
 
@@ -26,6 +27,7 @@
             <MudTh>Fundação</MudTh>
             <MudTh>Última Alteração</MudTh>
             <MudTh>Ativo</MudTh>
+            <MudTh></MudTh>
         </HeaderContent>
 
         <RowTemplate>
@@ -33,6 +35,11 @@
             <MudTd>@context.Fundacao</MudTd>
             <MudTd>@context.UltimaAlteracao</MudTd>
             <MudTd>@context.Ativo</MudTd>
+            <MudTd>
+                <MudIconButton Icon="@Icons.Material.Filled.Edit"
+                               OnClick="@(() => ClickEdicaoHandler(context.Id))" Variant="Variant.Outlined"
+                               Class="rounded-circle" Color="Color.Primary"/>
+            </MudTd>
         </RowTemplate>
     </MudTable>
 
@@ -47,6 +54,11 @@
         _tabelaUnidadesCarregando = true;
         _listaUnidades.AddRange(await UnidadeData.ListaUnidadesAsync());
         _tabelaUnidadesCarregando = false;
+    }
+
+    void ClickEdicaoHandler(Guid unidadeId)
+    {
+        NavigationManager.NavigateTo($"/unidades/atualizacao/{unidadeId}");
     }
 
 }

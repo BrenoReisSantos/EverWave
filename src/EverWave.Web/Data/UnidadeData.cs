@@ -1,4 +1,5 @@
 ﻿using EverWave.Domain.Dtos.HttpIn;
+using EverWave.Domain.Entities;
 using EverWave.Domain.Services;
 using EverWave.Web.Values.Forms;
 using EverWave.Web.Values.Table;
@@ -9,6 +10,8 @@ public interface IUnidadeData
 {
     Task CriaUnidadeAsync(CadastroUnidadeForm form);
     Task<List<UnidadeVisualizacaoTable>> ListaUnidadesAsync();
+    Task AtualizaUnidadeAsync(AtualizacaoUnidadeForm form);
+    Task<Unidade?> ObtemAsync(Guid id);
 }
 
 public class UnidadeData(IUnidadeService unidadeService) : IUnidadeData
@@ -26,7 +29,19 @@ public class UnidadeData(IUnidadeService unidadeService) : IUnidadeData
         var unidades = await _unidadeService.ObtemTodosAsync(CancellationToken.None);
         return unidades.Select(u => new UnidadeVisualizacaoTable
         {
-            Nome = u.Nome, Fundacao = u.CreatedAt, UltimaAlteracao = u.UpdatedAt, Ativo = true
+            Nome = u.Nome,
+            Fundacao = u.CreatedAt,
+            UltimaAlteracao = u.UpdatedAt,
+            Ativo = true,
+            Id = u.Id
         }).ToList();
+    }
+
+    public async Task<Unidade?> ObtemAsync(Guid id) => await _unidadeService.ObtemAsync(id, CancellationToken.None);
+
+    public async Task AtualizaUnidadeAsync(AtualizacaoUnidadeForm form)
+    {
+        var unidadeAtuailzacaoDto = new Unidade { Nome = form.Nome, };
+        await _unidadeService.AtualizaAsync(unidadeAtuailzacaoDto, CancellationToken.None);
     }
 }

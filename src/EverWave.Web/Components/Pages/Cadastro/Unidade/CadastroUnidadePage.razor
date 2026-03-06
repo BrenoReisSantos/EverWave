@@ -1,8 +1,8 @@
 ﻿@page "/unidades/cadastro"
-@rendermode InteractiveServer
-
 @using EverWave.Web.Data
 @using EverWave.Web.Values.Forms
+
+@rendermode InteractiveServer
 
 @inject IUnidadeData UnidadeData
 @inject NavigationManager Navigation
@@ -11,7 +11,7 @@
 
 <MudContainer Class="mt-5">
     <MudText Class="mt-5" Typo="Typo.h4">CADASTRO DE UNIDADE</MudText>
-    <MudForm Class="mt-5">
+    <MudForm @bind-IsValid="_formValido" Class="mt-5">
         <MudGrid Justify="Justify.FlexStart" Spacing="0">
             <MudItem xs="12" lg="4">
                 <MudTextField @bind-Value="_form.Nome" Required Placeholder="Nome"
@@ -21,7 +21,8 @@
             </MudItem>
             <MudFlexBreak/>
             <MudItem xs="3">
-                <MudButton Disabled="_processando" Class="mt-5" Variant="Variant.Filled" Color="Color.Primary"
+                <MudButton Disabled="@(_processando || !_formValido)" Class="mt-5" Variant="Variant.Filled"
+                           Color="Color.Primary"
                            @onclick="OnSubmit">Criar
                 </MudButton>
             </MudItem>
@@ -32,6 +33,7 @@
 @code {
     CadastroUnidadeForm _form = new();
 
+    bool _formValido;
     bool _processando = false;
 
     private async Task OnSubmit()

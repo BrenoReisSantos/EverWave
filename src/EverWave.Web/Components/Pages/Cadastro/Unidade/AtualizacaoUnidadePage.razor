@@ -1,0 +1,63 @@
+﻿@page "/unidades/atualizacao/{id:guid}"
+@attribute [StreamRendering]
+
+@using EverWave.Web.Data
+@using EverWave.Web.Values.Forms
+
+@inject IUnidadeData UnidadeData
+@inject ISnackbar Snackbar
+@inject NavigationManager NavigationManager
+
+<MudContainer Class="mt-5">
+    <MudText Typo="Typo.h4">ATUALIZAÇÃO DE UNIDADE</MudText>
+
+    <MudForm @bind-IsValid="_formValido" Class="mt-5">
+        <MudGrid Justify="Justify.FlexStart" Spacing="0">
+            <MudItem xs="12" lg="4">
+                <MudTextField Disabled="_carregandoDadosAtuais" @bind-Value="_form.Nome" Required Placeholder="Nome"
+                              @RequiredError="É necessário dar nome à Unidade"
+                              @Label="Nome da Unidade"/>
+
+            </MudItem>
+            <MudFlexBreak/>
+            <MudItem xs="3">
+                <MudButton Disabled="@(_processando || !_formValido || _carregandoDadosAtuais)" Class="mt-5"
+                           Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           @onclick="OnSubmit">Criar
+                </MudButton>
+            </MudItem>
+        </MudGrid>
+    </MudForm>
+</MudContainer>
+
+@code {
+    [Parameter] public Guid Id { get; set; }
+
+    AtualizacaoUnidadeForm _form = new();
+
+    bool _formValido;
+    bool _processando = false;
+
+    bool _carregandoDadosAtuais = true;
+
+    private async Task OnSubmit()
+    {
+        _processando = true;
+        await UnidadeData.AtualizaUnidadeAsync(_form);
+        _processando = false;
+
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.BottomRight;
+        Snackbar.Add("Unidade Atualizada com Sucesso!", Severity.Success);
+        NavigationManager.NavigateTo("/unidades");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _carregandoDadosAtuais = true;
+        var unidadeAtual = await UnidadeData.ObtemAsync(Id);
+        _form.Nome = unidadeAtual?.Nome;
+        _carregandoDadosAtuais = false;
+    }
+
+}
